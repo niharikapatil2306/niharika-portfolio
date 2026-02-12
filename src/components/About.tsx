@@ -63,7 +63,7 @@ export default function About() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
-            <div className="relative mx-auto w-96 h-96">
+            <div className="relative mx-auto w-64 h-64 md:w-96 md:h-96">
               <Image
                 src="/profile.png"
                 alt="Niharika Patil"
@@ -77,7 +77,7 @@ export default function About() {
 
           {/* Text Content */}
           <div
-            className={`transition-all duration-700 delay-200 ${
+            className={`transition-all duration-700 delay-200 overflow-hidden ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             }`}
           >
@@ -85,15 +85,15 @@ export default function About() {
               Stressed, blessed, and coffee obsessed ☕
             </h3>
 
-            <p className="text-text-light mb-4 leading-relaxed">
-             Hey, I'm Nicks — a software engineer who happens to have two ML degrees but would rather 
-             build a sick website than train another model. I love turning ideas into real, working 
-             products — whether that's a real-time chat app, a risk analysis platform, or a pastry 
-             shop website (yes, really). I'm the kind of person who'll learn a whole new tech stack 
+            <p className="text-text-light mb-4 leading-relaxed break-words">
+             Hey, I&apos;m Nicks — a software engineer who happens to have two ML degrees but would rather
+             build a sick website than train another model. I love turning ideas into real, working
+             products — whether that&apos;s a real-time chat app, a risk analysis platform, or a pastry
+             shop website (yes, really). I&apos;m the kind of person who&apos;ll learn a whole new tech stack
              over the weekend just to ship something cool. Currently looking for my next adventure in the UK.
             </p>
-            <p className="text-text-light mb-4 leading-relaxed">
-              I don't just write code — I design the experience, stress about the spacing, 
+            <p className="text-text-light mb-4 leading-relaxed break-words">
+              I don&apos;t just write code — I design the experience, stress about the spacing,
               then rewrite the whole thing at 2am because I thought of a better way.
             </p>
 
