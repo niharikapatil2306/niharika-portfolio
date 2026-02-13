@@ -35,7 +35,7 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 px-6 bg-cream-dark relative overflow-hidden"
+      className="py-24 px-8 md:px-6 bg-cream-dark relative overflow-hidden"
     >
       {/* Background Image */}
       {/* <div className="absolute inset-0 pointer-events-none" style={{ transform: "scaleX(-1)" }}>
@@ -56,14 +56,14 @@ export default function About() {
           
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Profile Image with Blob Frame */}
           <div
             className={`transition-all duration-700 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
-            <div className="relative mx-auto w-64 h-64 md:w-96 md:h-96">
+            <div className="relative mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96">
               <Image
                 src="/profile.png"
                 alt="Niharika Patil"
@@ -77,7 +77,7 @@ export default function About() {
 
           {/* Text Content */}
           <div
-            className={`transition-all duration-700 delay-200 overflow-hidden ${
+            className={`transition-all duration-700 delay-200 overflow-hidden max-w-full ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             }`}
           >
