@@ -10,7 +10,8 @@ const projects = [
     description:
       "Quantitative risk analysis platform processing 61 UK equities with 6 risk models including Monte Carlo simulation, VaR, and EWMA forecasting. Built with FastAPI achieving 7s response time.",
     tags: ["Python", "FastAPI", "Monte Carlo", "Finance"],
-    image: "/investx.jpeg", // placeholder
+    image: "/investx.jpeg",
+    github: "https://github.com/niharikapatil2306/InvestX",
   },
   {
     title: "Autonomous Driving",
@@ -19,6 +20,7 @@ const projects = [
       "CNN-based steering model trained on 17,647 images achieving 35.8% improvement in prediction accuracy. Deployed real-time inference on Raspberry Pi with 180-200ms latency.",
     tags: ["CNN", "OpenCV", "Raspberry Pi", "Deep Learning"],
     image: "/car.jpeg",
+    github: "https://github.com/niharikapatil2306/autonomous-driving",
   },
   {
     title: "SMOTE on Spark",
@@ -26,7 +28,7 @@ const projects = [
     description:
       "Distributed SMOTE pipelines in PySpark handling extreme class imbalance (578:1 ratio). Achieved 91.49% balanced accuracy for fraud detection while reducing execution time by 49%.",
     tags: ["PySpark", "Databricks", "Big Data", "ML"],
-    image: "/smote.png", // placeholder
+    image: "/smote.png",
   },
   {
     title: "BlinkChat",
@@ -35,6 +37,8 @@ const projects = [
       "Real-time chat application with React and Firebase supporting 10+ concurrent users. Minimized latency to under 200ms and reduced bundle size by 35% using Vite.",
     tags: ["React", "Firebase", "Vite", "Real-time"],
     image: "/blink_chat.jpeg",
+    github: "https://github.com/niharikapatil2306/blink-chat",
+    live: "https://blink-chat.netlify.app/",
   },
   {
     title: "DessertLove",
@@ -43,6 +47,8 @@ const projects = [
       "Responsive pastry shop website with online ordering, reservations, and blog features. Increased page load speed by 40% with lazy loading and optimized checkout by 25%.",
     tags: ["React", "Firebase", "UI/UX", "E-commerce"],
     image: "/dessert-love.jpeg",
+    github: "https://github.com/niharikapatil2306/DessertLove",
+    live: "https://dessert-love.netlify.app/",
   },
   {
     title: "Text-to-SQL RAG",
@@ -50,7 +56,8 @@ const projects = [
     description:
       "AI assistant translating natural language to SQL queries using LangChain and Mistral-7B. Implemented FAISS vector store achieving 95% accuracy on test set.",
     tags: ["LangChain", "RAG", "NLP", "FAISS"],
-    image: "/textsql.jpg", // placeholder
+    image: "/textsql.jpg",
+    github: "https://github.com/niharikapatil2306/Text2SQL",
   },
 ];
 
@@ -85,7 +92,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-lg tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
+          <h2 className="tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
             Projects
           </h2>
         </div>
@@ -130,9 +137,33 @@ export default function Projects() {
                 <p className="text-sm text-pink-accent mb-4">{project.date}</p>
 
                 {/* Description */}
-                <p className="text-text-light text-[0.9rem] leading-relaxed">
+                <p className="text-text-light text-[0.9rem] leading-relaxed mb-4">
                   {project.description}
                 </p>
+
+                {/* Links */}
+                <div className="flex gap-3 flex-wrap">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-full border-2 border-pink-medium text-text-dark text-sm font-medium tracking-wide hover:bg-pink-light hover:-translate-y-1 transition-all duration-300"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-full border-2 border-pink-medium bg-pink-light text-text-dark text-sm font-medium tracking-wide hover:bg-pink-medium hover:-translate-y-1 transition-all duration-300"
+                    >
+                      Live Site
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
