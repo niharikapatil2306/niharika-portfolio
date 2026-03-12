@@ -6,7 +6,7 @@ import Image from "next/image";
 const projects = [
   {
     title: "Movie Mate",
-    date: "Feb 2026 – Present",
+    date: "Feb 2026 – Mar 2026",
     description:
       "Multiplayer movie decision app sustaining 51 req/sec across 10 concurrent users with 0 errors. 13-endpoint PostgreSQL REST API with sub-400ms latency, 20 Jest/Supertest integration tests, containerised with Docker.",
     tags: ["Next.js", "Express.js", "PostgreSQL", "Docker", "Jest"],
