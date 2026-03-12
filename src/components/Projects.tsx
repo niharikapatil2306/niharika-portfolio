@@ -8,10 +8,11 @@ const projects = [
     title: "Movie Mate",
     date: "Feb 2026 – Present",
     description:
-      "Multiplayer movie decision app built with Next.js and Express.js, sustaining 51 req/sec across 10 concurrent users with 0 errors. Features a 13-endpoint PostgreSQL-backed REST API with sub-400ms room latency and p99 under 550ms. Shipped with 20 Jest/Supertest integration tests and containerised with Docker.",
+      "Multiplayer movie decision app sustaining 51 req/sec across 10 concurrent users with 0 errors. 13-endpoint PostgreSQL REST API with sub-400ms latency, 20 Jest/Supertest integration tests, containerised with Docker.",
     tags: ["Next.js", "Express.js", "PostgreSQL", "Docker", "Jest"],
     image: "/moviemate.png",
     github: "https://github.com/niharikapatil2306/moviemate",
+    live: "https://moviemate-aihzm8t5w-niharikapatil2306s-projects.vercel.app/",
   },
   {
     title: "InvestX",
