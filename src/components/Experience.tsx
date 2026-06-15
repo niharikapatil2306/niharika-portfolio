@@ -5,18 +5,29 @@ import { useEffect, useRef, useState } from "react";
 const experiences = [
   {
     date: "May 2025 - Sept 2025",
-    title: "AI Researcher",
+    title: "Research Assistant",
     company: "University of Nottingham",
     description: [
-      "Developed the first systematic AI framework combining diffusion models with evolutionary insights for thermostable RuBisCO variants",
-      "Curated dataset of 36,000+ annotated sequences and 17,000 extremophilic proteins for multi-task learning",
-      "Achieved TM-scores of 0.91-0.98 validated via AlphaFold with preserved catalytic activity at 40-60°C",
+      "Addressed RuBisCO thermal instability threating crop yield under climate change, by preserving catalytic function at 91% confidence using Diffusion model.",
+      "Designed a 41M-parameter diffusion model with BLOSUM62 guided noise scheduling and dual-guidance generation across 37k protein structures.",
+      "Developed first extremophile informed generative AI framework producing variants stable at 40-45 °C by training on 17k extremophiles with atomic-level multi-task learning",
+      "Achieved TM-scores of 0.91–0.98 and sub-1.5Å RMSD across generated variants, validated through dual structural analysis using COFACTOR template alignment and AlphaFold3 ab initio prediction",
+    ],
+  },
+  {
+    date: "Jun 2023 - Jul 2024",
+    title: "Software Developer Intern",
+    company: "Tech R",
+    description: [
+      "Reduced manual candidate screening time by 25%, implemented similarity scoring framework to rank candidate profiles against job descriptions, cutting manual review steps across hiring pipeline.",
+      "Improved candidate match accuracy by 30% by integrating a PPO reinforcement learning loop that refined match thresholds from recruiter feedback, replacing static scoring system.",
+      "Supported scalable feature delivery by designing 16+ reusable components reducing component build time 38% spanning profile ingestion, ranking and screening tests.",
     ],
   },
   {
     date: "Dec 2022 - Feb 2023",
     title: "ML Intern",
-    company: "AWS Academy, Pune, India",
+    company: "AWS Academy",
     description: [
       "Built AWS Lex chatbot handling 10+ conversation intents with sub-2 second response times",
       "Developed SageMaker ML models achieving 85%+ accuracy for mental health sentiment analysis",
