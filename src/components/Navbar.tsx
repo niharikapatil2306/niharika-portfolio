@@ -55,7 +55,7 @@ export default function Navbar() {
             height={44}
             className="object-contain brightness-0 invert"
           />
-          <span className="hidden font-[family-name:var(--font-jost)] text-[0.65rem] uppercase tracking-[0.3em] text-cream-dim sm:inline">
+          <span className="hidden font-[family-name:var(--font-jost)] text-[0.65rem] uppercase tracking-[0.3em] text-cream-dim lg:inline">
             {clock || " "}
           </span>
         </Link>
