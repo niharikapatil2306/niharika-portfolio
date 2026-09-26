@@ -25,7 +25,7 @@ export default async function UnsubscribePage({ searchParams }: Props) {
     <main className="min-h-screen">
       <Navbar />
       <section className="px-5 pt-40 pb-24 sm:px-8">
-        <div className="mx-auto max-w-md rounded-2xl bg-card p-8 text-center text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+        <div className="mx-auto max-w-md rounded-2xl glass p-8 text-center text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
           {done ? (
             <>
               <p className="font-[family-name:var(--font-cormorant)] text-3xl font-semibold">

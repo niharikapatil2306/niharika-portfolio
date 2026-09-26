@@ -129,7 +129,7 @@ export default function Skills() {
             {spokenLanguages.map((language) => (
               <li
                 key={language}
-                className="rounded-xl bg-card px-5 py-4 text-center font-[family-name:var(--font-cormorant)] text-2xl font-semibold text-card-ink shadow-[0_12px_36px_rgba(0,0,0,0.45)]"
+                className="rounded-xl glass px-5 py-4 text-center font-[family-name:var(--font-cormorant)] text-2xl font-semibold text-card-ink shadow-[0_12px_36px_rgba(0,0,0,0.45)]"
               >
                 {language}
               </li>

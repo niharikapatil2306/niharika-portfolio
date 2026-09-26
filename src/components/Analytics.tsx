@@ -54,7 +54,7 @@ export default function Analytics() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-2xl bg-card p-5 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:left-auto sm:right-6 sm:bottom-6"
+      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-md rounded-2xl glass p-5 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:left-auto sm:right-6 sm:bottom-6"
     >
       <p className="font-[family-name:var(--font-cormorant)] text-xl font-semibold">
         A little bird told me…
@@ -72,7 +72,7 @@ export default function Analytics() {
         </button>
         <button
           onClick={() => choose("denied")}
-          className="rounded-full border border-card-ink/25 px-5 py-2.5 text-[0.66rem] font-medium uppercase tracking-[0.16em] transition-colors hover:border-card-ink"
+          className="rounded-full border border-gold/45 px-5 py-2.5 text-[0.66rem] font-medium uppercase tracking-[0.16em] transition-colors hover:border-card-ink"
         >
           No thanks
         </button>

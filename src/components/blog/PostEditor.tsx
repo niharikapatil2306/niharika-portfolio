@@ -20,7 +20,7 @@ export default function PostEditor({ canEmail }: { canEmail: boolean }) {
     <form
       ref={formRef}
       action={formAction}
-      className="space-y-5 rounded-2xl bg-card p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+      className="space-y-5 rounded-2xl glass p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
     >
       <div>
         <label htmlFor="title" className={label}>Title</label>
@@ -51,7 +51,7 @@ export default function PostEditor({ canEmail }: { canEmail: boolean }) {
       </div>
 
       <label className="flex items-center gap-3 text-sm">
-        <input type="checkbox" name="notify" defaultChecked={canEmail} disabled={!canEmail} className="h-4 w-4 accent-[#26231d]" />
+        <input type="checkbox" name="notify" defaultChecked={canEmail} disabled={!canEmail} className="h-4 w-4 accent-[#dcc48e]" />
         {canEmail
           ? "Email this post to subscribers"
           : "Emailing subscribers is off until Resend is set up"}

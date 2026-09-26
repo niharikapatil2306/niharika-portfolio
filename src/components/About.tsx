@@ -67,7 +67,7 @@ export default function About() {
           </div>
 
           <dl
-            className={`h-fit rounded-2xl bg-card p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-all delay-200 duration-700 ${
+            className={`h-fit rounded-2xl glass p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-all delay-200 duration-700 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >

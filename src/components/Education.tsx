@@ -65,7 +65,7 @@ export default function Education() {
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
-              className={`flex flex-col gap-6 rounded-2xl bg-card p-7 text-card-ink shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-all duration-700 sm:flex-row sm:items-center ${
+              className={`flex flex-col gap-6 rounded-2xl glass p-7 text-card-ink shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-all duration-700 sm:flex-row sm:items-center ${
                 visibleCards.includes(index)
                   ? "translate-y-0 opacity-100"
                   : "translate-y-5 opacity-0"

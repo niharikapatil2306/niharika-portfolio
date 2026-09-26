@@ -83,12 +83,12 @@ export default function Hero() {
           </nav>
 
           {/* The post card */}
-          <article className="animate-fade-in-up animate-delay-400 order-1 mx-auto w-full max-w-lg rounded-2xl bg-card p-5 text-card-ink shadow-[0_24px_70px_rgba(0,0,0,0.6)] sm:p-7 lg:order-2">
+          <article className="animate-fade-in-up animate-delay-400 order-1 mx-auto w-full max-w-lg rounded-2xl glass p-5 text-card-ink shadow-[0_24px_70px_rgba(0,0,0,0.6)] sm:p-7 lg:order-2">
             <p className="font-[family-name:var(--font-cormorant)] text-xl font-semibold sm:text-2xl">
               Currently: open to marketing analyst roles in fashion &amp; retail, UK
             </p>
 
-            <div className="relative mt-5 aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#efe7ea]">
+            <div className="relative mt-5 aspect-[4/3] w-full overflow-hidden rounded-xl bg-ink-soft">
               <Image
                 src="/profile.png"
                 alt="Niharika Patil"
@@ -116,7 +116,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="#contact"
-                className="rounded-full border border-card-ink/25 px-6 py-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-card-ink transition-colors hover:border-card-ink hover:bg-card-ink hover:text-card"
+                className="rounded-full border border-gold/45 px-6 py-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-card-ink transition-colors hover:border-card-ink hover:bg-card-ink hover:text-card"
               >
                 Get In Touch
               </Link>

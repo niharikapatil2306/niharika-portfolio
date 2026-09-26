@@ -6,9 +6,10 @@
   --color-ink-line: #2c2822;
   --color-cream: #f0ead2;
   --color-cream-dim: #a39c88;
-  --color-card: #f5f0de;
-  --color-card-ink: #26231d;
-  --color-card-dim: #6b6456;
+  /* Cards are dark glass: cream text, and filled buttons flip to cream-on-ink. */
+  --color-card: #0a0a0b;
+  --color-card-ink: #f0ead2;
+  --color-card-dim: #a39c88;
   --color-blue: #8fb8d4;
   --color-coral: #e0785f;
   --color-gold: #dcc48e;
@@ -26,6 +27,14 @@ body {
   background: var(--color-ink);
   color: var(--color-cream);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Dark glass card: the city lights glow faintly through, edged in gold. */
+@utility glass {
+  background-color: rgba(20, 19, 22, 0.58);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(220, 196, 142, 0.32);
 }
 
 /* City bokeh behind the hero — the lights the original site sat on top of. */

@@ -9,7 +9,7 @@ export default function LoginForm() {
   return (
     <form
       action={formAction}
-      className="mx-auto max-w-sm rounded-2xl bg-card p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+      className="mx-auto max-w-sm rounded-2xl glass p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
     >
       <p className="font-[family-name:var(--font-cormorant)] text-2xl font-semibold">
         Who&apos;s asking?
