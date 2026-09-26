@@ -3,7 +3,13 @@
 import { useSyncExternalStore } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+// Measurement IDs are public (they appear in page source), so a default is fine.
+// Only the live production site reports, so local dev and preview deploys
+// don't pollute the numbers. NEXT_PUBLIC_VERCEL_ENV is set by Vercel.
+const GA_ID =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
+    ? (process.env.NEXT_PUBLIC_GA_ID ?? "G-LNL4E9C2RQ")
+    : undefined;
 const CONSENT_KEY = "analytics-consent";
 
 type Consent = "granted" | "denied" | null;
