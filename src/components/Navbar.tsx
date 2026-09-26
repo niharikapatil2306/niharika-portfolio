@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/#about", label: "About" },
@@ -18,6 +19,16 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [clock, setClock] = useState("");
+  const pathname = usePathname();
+
+  // Already on the home page: the link wouldn't move, so glide back to the top.
+  const goHome = (event: React.MouseEvent) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    history.replaceState(null, "", "/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -47,7 +58,7 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <Link href="/" className="flex items-center gap-4 transition-opacity hover:opacity-70">
+        <Link href="/" onClick={goHome} aria-label="Home" className="flex items-center gap-4 transition-opacity hover:opacity-70">
           <Image
             src="/PortfolioLogo1.png"
             alt="Niharika Patil"
