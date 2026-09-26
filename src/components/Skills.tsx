@@ -1,55 +1,61 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SectionHeading from "./SectionHeading";
 
 const skillCategories = [
   {
-    title: "Programming Languages",
-    skills: ["Python", "JavaScript", "TypeScript", "SQL", "R", "Java", "HTML/CSS"],
-  },
-  {
-    title: "Frontend & Frameworks",
+    title: "Data & BI",
     skills: [
-      "React.js",
-      "Node.js",
-      "Vite",
-      "Tailwind CSS",
-      "React Router",
-      "Electron.js",
-      "FastAPI",
-      "Django",
-      "Flask",
-    ],
-  },
-  {
-    title: "ML/AI & Data Science",
-    skills: [
-      "TensorFlow",
-      "PyTorch",
-      "Scikit-learn",
-      "Pandas",
+      "Power BI",
+      "Excel",
+      "Dashboard design",
+      "Data cleaning & analysis",
+      "Stakeholder reporting",
+      "pandas",
       "NumPy",
-      "OpenCV",
-      "LangChain",
-      "NLP",
-      "Deep Learning",
-      "CNNs",
+      "Matplotlib",
     ],
   },
   {
-    title: "Cloud & Big Data",
+    title: "Databases",
+    skills: ["SQL", "PostgreSQL", "Query & schema design", "pgvector"],
+  },
+  {
+    title: "Programming",
+    skills: ["Python", "SQL", "JavaScript", "TypeScript", "Java", "C++"],
+  },
+  {
+    title: "Web & CMS",
     skills: [
-      "AWS SageMaker",
-      "AWS Lex",
-      "AWS Rekognition",
-      "Firebase",
-      "Apache Spark",
-      "PySpark",
-      "Databricks",
-      "MongoDB",
+      "WordPress",
+      "React",
+      "Next.js",
+      "Vue.js",
+      "Tailwind",
+      "HTML/CSS",
+      "Landing pages",
+      "UI design",
     ],
+  },
+  {
+    title: "ML & AI",
+    skills: [
+      "PyTorch",
+      "LangChain",
+      "RAG",
+      "LLMs",
+      "NLP",
+      "Reinforcement learning",
+    ],
+  },
+  {
+    title: "Cloud & Tools",
+    skills: ["Microsoft Azure", "AWS", "Docker", "Git & GitHub", "Agile & Scrum"],
   },
 ];
+
+const spokenLanguages = ["English", "French", "German", "Korean"];
 
 export default function Skills() {
   const [visibleCategories, setVisibleCategories] = useState<number[]>([]);
@@ -72,48 +78,40 @@ export default function Skills() {
       return observer;
     });
 
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
-    };
+    return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
   return (
-    <section id="skills" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-lg tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
-            Skills
-          </h2>
-        </div>
+    <section
+      id="skills"
+      className="border-t border-ink-line bg-ink px-5 py-24 sm:px-8"
+    >
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading label="skills" accent="text-rose" />
 
-        {/* Skills Categories */}
-        <div className="space-y-12">
+        <div className="space-y-11">
           {skillCategories.map((category, index) => (
             <div
               key={category.title}
-              ref={(el) => { categoryRefs.current[index] = el; }}
+              ref={(el) => {
+                categoryRefs.current[index] = el;
+              }}
               className={`transition-all duration-700 ${
                 visibleCategories.includes(index)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-5"
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-5 opacity-0"
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <h3 className="font-[family-name:var(--font-cormorant)] font-bold text-2xl text-text-dark mb-3 pb-1 border-b-2 border-pink-light">
+              <h3 className="mb-4 font-[family-name:var(--font-jost)] text-[0.68rem] uppercase tracking-[0.28em] text-cream-dim">
                 {category.title}
               </h3>
 
-              <div className="flex flex-wrap gap-3">
-                {category.skills.map((skill, skillIndex) => (
+              <div className="flex flex-wrap gap-2.5">
+                {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-6 py-2 bg-pink-light/50 rounded-full text-text-dark font-medium shadow-[0_5px_20px_rgba(255,165,184,0.5)] border border-transparent hover:border-pink-medium hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(255,165,184,0.2)] transition-all duration-300 cursor-default"
-                    style={{
-                      transitionDelay: visibleCategories.includes(index)
-                        ? `${skillIndex * 50}ms`
-                        : "0ms",
-                    }}
+                    className="cursor-default rounded-full border border-ink-line bg-ink-soft px-5 py-2 text-sm text-cream transition-all duration-300 hover:-translate-y-1 hover:border-gold hover:text-gold"
                   >
                     {skill}
                   </span>
@@ -121,6 +119,22 @@ export default function Skills() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16">
+          <h3 className="mb-5 font-[family-name:var(--font-jost)] text-[0.68rem] uppercase tracking-[0.28em] text-cream-dim">
+            Languages I speak
+          </h3>
+          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {spokenLanguages.map((language) => (
+              <li
+                key={language}
+                className="rounded-xl bg-card px-5 py-4 text-center font-[family-name:var(--font-cormorant)] text-2xl font-semibold text-card-ink shadow-[0_12px_36px_rgba(0,0,0,0.45)]"
+              >
+                {language}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

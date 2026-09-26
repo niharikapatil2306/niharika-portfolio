@@ -2,26 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import SectionHeading from "./SectionHeading";
 
 const projects = [
-  {
-    title: "Movie Mate",
-    date: "Feb 2026 – Mar 2026",
-    description:
-      "Multiplayer movie decision app sustaining 51 req/sec across 10 concurrent users with 0 errors. 13-endpoint PostgreSQL REST API with sub-400ms latency, 20 Jest/Supertest integration tests, containerised with Docker.",
-    tags: ["Next.js", "Express.js", "PostgreSQL", "Docker", "Jest"],
-    image: "/moviemate.png",
-    github: "https://github.com/niharikapatil2306/moviemate",
-    live: "https://moviemate-aihzm8t5w-niharikapatil2306s-projects.vercel.app/",
-  },
   {
     title: "InvestX",
     date: "Nov 2025 - Jan 2026",
     description:
-      "Quantitative risk analysis platform processing 61 UK equities with 6 risk models including Monte Carlo simulation, VaR, and EWMA forecasting. Built with FastAPI achieving 7s response time.",
-    tags: ["Python", "FastAPI", "Monte Carlo", "Finance"],
+      "Interactive risk dashboard across 60+ equities to support data-driven decisions. Automated pipeline ingests 250+ trading days per stock; 10 models incl. VaR and CVaR over 10,000 Monte Carlo runs.",
+    tags: ["Python", "Dashboard", "Monte Carlo"],
     image: "/investx.jpeg",
     github: "https://github.com/niharikapatil2306/InvestX",
+  },
+  {
+    title: "Movie Mate",
+    date: "Feb 2026 – Mar 2026",
+    description:
+      "Designed the user journey so group consensus dropped from 100–200 swipes to 15–25, then built it end to end: React, a 13-endpoint REST API and a PostgreSQL database queried directly.",
+    tags: ["User journey", "PostgreSQL", "React"],
+    image: "/moviemate.png",
+    github: "https://github.com/niharikapatil2306/moviemate",
+    live: "https://moviemate-aihzm8t5w-niharikapatil2306s-projects.vercel.app/",
   },
   {
     title: "Autonomous Driving",
@@ -73,7 +74,7 @@ const projects = [
 
 export default function Projects() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const observers = cardRefs.current.map((ref, index) => {
@@ -92,73 +93,71 @@ export default function Projects() {
       return observer;
     });
 
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
-    };
+    return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
   return (
-    <section id="projects" className="py-24 px-6 bg-cream-dark">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
-            Projects
-          </h2>
-        </div>
+    <section
+      id="projects"
+      className="border-t border-ink-line bg-ink px-5 py-24 sm:px-8"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading label="projects" accent="text-gold" />
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className={`bg-white rounded-3xl overflow-hidden shadow-[0_10px_40px_rgba(255,165,184,0.1)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_rgba(255,165,184,0.2)] ${
+            <article
+              key={project.title}
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              className={`flex flex-col overflow-hidden rounded-xl bg-card text-card-ink shadow-[0_12px_36px_rgba(0,0,0,0.45)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)] ${
                 visibleCards.includes(index)
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: `${index * 80}ms` }}
             >
-              {/* Project Image */}
-              <div className="relative w-full h-48 bg-gradient-to-br from-pink-light to-pink-soft">
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-4xl font-bold text-white/80 font-mono">
-                      {project.title.split(' ').map(w => w[0]).join('')}
-                    </span>
-                  </div>
-                )}
+              <div className="relative h-28 w-full bg-ink-soft">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                {/* Title & Date */}
-                <h3 className="font-[family-name:var(--font-cormorant)] font-bold text-2xl text-text-dark mb-2">
+              <div className="flex flex-1 flex-col p-4">
+                <h3 className="font-[family-name:var(--font-cormorant)] text-xl font-bold leading-tight">
                   {project.title}
                 </h3>
-                <p className="text-sm text-pink-accent mb-4">{project.date}</p>
+                <p className="mt-0.5 text-[0.56rem] uppercase tracking-[0.18em] text-card-dim">
+                  {project.date}
+                </p>
 
-                {/* Description */}
-                <p className="text-text-light text-[0.9rem] leading-relaxed mb-4">
+                <p className="mt-2.5 line-clamp-4 text-[0.78rem] leading-relaxed text-card-dim">
                   {project.description}
                 </p>
 
-                {/* Links */}
-                <div className="flex gap-3 flex-wrap">
+                <ul className="mt-3 flex flex-wrap gap-1">
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-card-ink/20 px-2 py-0.5 text-[0.55rem] uppercase tracking-[0.08em] text-card-dim"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto flex flex-wrap gap-2 pt-4">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2 rounded-full border-2 border-pink-medium text-text-dark text-sm font-medium tracking-wide hover:bg-pink-light hover:-translate-y-1 transition-all duration-300"
+                      className="rounded-full border border-card-ink/25 px-3 py-1.5 text-[0.58rem] font-medium uppercase tracking-[0.14em] transition-colors hover:border-card-ink hover:bg-card-ink hover:text-card"
                     >
                       GitHub
                     </a>
@@ -168,14 +167,14 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2 rounded-full border-2 border-pink-medium bg-pink-light text-text-dark text-sm font-medium tracking-wide hover:bg-pink-medium hover:-translate-y-1 transition-all duration-300"
+                      className="rounded-full bg-card-ink px-3 py-1.5 text-[0.58rem] font-medium uppercase tracking-[0.14em] text-card transition-colors hover:bg-coral"
                     >
-                      Live Site
+                      Live
                     </a>
                   )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

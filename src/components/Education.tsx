@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SectionHeading from "./SectionHeading";
 
 const education = [
   {
@@ -27,9 +28,7 @@ const publication = {
 
 export default function Education() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
-  const [pubVisible, setPubVisible] = useState(false);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const pubRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observers = cardRefs.current.map((ref, index) => {
@@ -48,77 +47,79 @@ export default function Education() {
       return observer;
     });
 
-    // Publication observer
-    const pubObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setPubVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (pubRef.current) {
-      pubObserver.observe(pubRef.current);
-    }
-
-    return () => {
-      observers.forEach((observer) => observer?.disconnect());
-      pubObserver.disconnect();
-    };
+    return () => observers.forEach((observer) => observer?.disconnect());
   }, []);
 
   return (
-    <>
-      {/* Education Section */}
-      <section id="education" className="py-24 px-6 bg-cream-dark">
-        <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-lg tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
-              Education
-            </h2>
-    
-          </div>
+    <section
+      id="education"
+      className="border-t border-ink-line bg-ink px-5 py-24 sm:px-8"
+    >
+      <div className="mx-auto max-w-4xl">
+        <SectionHeading label="education" accent="text-blue" />
 
-          {/* Education Cards */}
-          <div className="space-y-8">
-            {education.map((edu, index) => (
-              <div
-                key={index}
-                ref={(el) => { cardRefs.current[index] = el; }}
-                className={`bg-cream rounded-3xl p-8 shadow-[0_10px_40px_rgba(255,165,184,0.1)] flex flex-col md:flex-row gap-8 items-center transition-all duration-700 ${
-                  visibleCards.includes(index)
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-5"
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                {/* Year Badge */}
-                <div className="bg-pink-light/50 p-6 rounded-2xl text-center min-w-[140px]">
-                  <p className="font-[family-name:var(--font-cormorant)] text-xl font-semibold text-text-dark">
-                    {edu.years}
-                  </p>
-                </div>
+        <div className="space-y-6">
+          {education.map((edu, index) => (
+            <div
+              key={edu.degree}
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              className={`flex flex-col gap-6 rounded-2xl bg-card p-7 text-card-ink shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition-all duration-700 sm:flex-row sm:items-center ${
+                visibleCards.includes(index)
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-5 opacity-0"
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              <p className="shrink-0 font-[family-name:var(--font-jost)] text-[0.68rem] uppercase tracking-[0.22em] text-card-dim sm:w-32">
+                {edu.years}
+              </p>
 
-                {/* Content */}
-                <div className="text-center md:text-left">
-                  <h3 className="font-[family-name:var(--font-cormorant)] font-bold text-2xl text-text-dark mb-2">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-text-light mb-3">{edu.school}</p>
-                  <span className="inline-block px-4 py-1.5 bg-pink-light/50 rounded-full text-sm font-medium text-text-dark">
-                    {edu.grade}
-                  </span>
-                </div>
+              <div className="sm:border-l sm:border-card-ink/15 sm:pl-6">
+                <h3 className="font-[family-name:var(--font-cormorant)] text-2xl font-bold">
+                  {edu.degree}
+                </h3>
+                <p className="mt-1 text-sm text-card-dim">{edu.school}</p>
+                <p className="mt-3 text-[0.7rem] uppercase tracking-[0.14em] text-card-ink/70">
+                  {edu.grade}
+                </p>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14">
+          <h3 className="mb-5 font-[family-name:var(--font-jost)] text-[0.68rem] uppercase tracking-[0.28em] text-cream-dim">
+            Publication
+          </h3>
+          <div className="rounded-2xl border border-ink-line bg-ink-soft p-7">
+            <p className="font-[family-name:var(--font-cormorant)] text-xl leading-snug text-cream md:text-2xl">
+              {publication.title}
+            </p>
+            <p className="mt-2 text-sm text-gold">{publication.journal}</p>
+            <p className="mt-4 text-[0.9rem] leading-relaxed text-cream-dim">
+              {publication.description}
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* Publication Section */}
-      
-    </>
+        <div className="mt-14">
+          <h3 className="mb-5 font-[family-name:var(--font-jost)] text-[0.68rem] uppercase tracking-[0.28em] text-cream-dim">
+            Extracurricular &amp; Leadership
+          </h3>
+          <div className="rounded-2xl border border-ink-line bg-ink-soft p-7">
+            <p className="font-[family-name:var(--font-cormorant)] text-xl leading-snug text-cream md:text-2xl">
+              Committee Member, Intercollegiate Drama Competition
+            </p>
+            <p className="mt-2 text-sm text-gold">6 months</p>
+            <p className="mt-4 text-[0.9rem] leading-relaxed text-cream-dim">
+              Co-organised a multi-university drama competition, managing
+              logistics and coordination across participating teams.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

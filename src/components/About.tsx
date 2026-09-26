@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import SectionHeading from "./SectionHeading";
 
 const aboutDetails = [
-  { label: "Location", value: "United Kingdom" },
-  { label: "Degree", value: "MSc Machine Learning" },
-  { label: "Focus", value: "ML & Frontend" },
-  { label: "Publication", value: "IJCRT Journal" },
+  { label: "Location", value: "Nottingham, UK — open to relocate" },
+  { label: "Focus", value: "Marketing & Customer Insight" },
+  { label: "Right to work", value: "UK Graduate Visa, to Jan 2028" },
+  { label: "Languages", value: "English · French · German · Korean" },
 ];
 
 export default function About() {
@@ -17,17 +17,12 @@ export default function About() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -35,70 +30,65 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-24 px-8 md:px-6 bg-cream-dark relative overflow-hidden"
+      className="border-t border-ink-line bg-ink px-5 py-24 sm:px-8"
     >
-      {/* Background Image */}
-      {/* <div className="absolute inset-0 pointer-events-none" style={{ transform: "scaleX(-1)" }}>
-        <Image
-          src="/bg.png"
-          alt=""
-          fill
-          className="object-cover"
-        />
-      </div> */}
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading label="about" accent="text-blue" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-lg tracking-[0.3em] text-pink-medium font-[family-name:var(--font-cormorant)] font-bold text-4xl md:text-5xl">
-            About Me
-          </h2>
-          
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Profile Image with Blob Frame */}
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:gap-14">
           <div
             className={`transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            <div className="relative mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96">
-              <Image
-                src="/profile.png"
-                alt="Niharika Patil"
-                fill
-                className="object-contain"
-                quality={100}
-                priority
-              />
-            </div>
-          </div>
-
-          {/* Text Content */}
-          <div
-            className={`transition-all duration-700 delay-200 overflow-hidden max-w-full ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-            }`}
-          >
-            <h3 className="font-[family-name:var(--font-cormorant)] text-2xl md:text-3xl text-text-dark mb-6">
-              Stressed, blessed, and coffee obsessed ☕
+            <h3 className="mb-6 font-[family-name:var(--font-cormorant)] text-2xl text-cream md:text-3xl">
+              Stressed, blessed, and coffee obsessed
             </h3>
 
-            <p className="text-text-light mb-4 leading-relaxed break-words">
-             Hey, I&apos;m Nicks — a software engineer who happens to have two ML degrees but would rather
-             build a sick website than train another model. I love turning ideas into real, working
-             products — whether that&apos;s a real-time chat app, a risk analysis platform, or a pastry
-             shop website (yes, really). I&apos;m the kind of person who&apos;ll learn a whole new tech stack
-             over the weekend just to ship something cool. Currently looking for my next adventure in the UK.
+            <p className="mb-4 leading-relaxed text-cream-dim">
+              Hey, I&apos;m Nicks — an analyst with an MSc in Machine Learning from
+              the University of Nottingham, now pointing all of it at marketing.
+              I work in SQL, Python and Power BI, query databases directly, and
+              build dashboards that make sense to people who will never open a
+              notebook. The goal is always the same: data that turns into a
+              decision someone actually acts on.
             </p>
-            <p className="text-text-light mb-4 leading-relaxed break-words">
-              I don&apos;t just write code — I design the experience, stress about the spacing,
-              then rewrite the whole thing at 2am because I thought of a better way.
+            <p className="mb-4 leading-relaxed text-cream-dim">
+              I&apos;ve run recruitment campaigns as a club marketing lead, built
+              client landing pages to a brief, and worked the shop floor at John
+              Lewis — so I&apos;ve seen the customer from both sides of the
+              spreadsheet.
             </p>
-
-         
+            <p className="leading-relaxed text-cream-dim">
+              Where I want to be: a marketing or customer insight team in fashion
+              and retail, figuring out who buys what, why, and what to do about
+              it. Available immediately, anywhere in the UK.
+            </p>
           </div>
+
+          <dl
+            className={`h-fit rounded-2xl bg-card p-7 text-card-ink shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-all delay-200 duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+            }`}
+          >
+            {aboutDetails.map((detail, index) => (
+              <div
+                key={detail.label}
+                className={`py-3 ${
+                  index !== aboutDetails.length - 1
+                    ? "border-b border-card-ink/12"
+                    : ""
+                }`}
+              >
+                <dt className="text-[0.62rem] uppercase tracking-[0.22em] text-card-dim">
+                  {detail.label}
+                </dt>
+                <dd className="mt-1.5 font-[family-name:var(--font-cormorant)] text-xl font-semibold">
+                  {detail.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

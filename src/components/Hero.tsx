@@ -1,207 +1,129 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
-const codeSnippets = [
-  "const life = () => code();",
-  "import { dreams } from 'future';",
-  "while(alive) { learn(); }",
-  "if (coffee) { code(); }",
-  "npm install success",
-  "git commit -m 'magic'",
-  "async function dream() {}",
-  "export default Me;",
-  "<Hello world />",
-  "console.log('Hi!');",
-  "return awesome;",
-  "const skills = ['ML', 'React'];",
-  "await future.build();",
-  "pip install intelligence",
-  "model.fit(passion, data)",
-  "torch.nn.Linear(in, out)",
-  "SELECT * FROM skills;",
-  "docker run success",
-  "python train.py",
-  "class Engineer extends Human {}",
+const sidebarLinks = [
+  {
+    href: "#about",
+    label: "about",
+    blurb: "Who I am, and why fashion needs good data.",
+    color: "text-blue",
+  },
+  {
+    href: "#experience",
+    label: "experience",
+    blurb: "Campaigns, internships, research and retail.",
+    color: "text-coral",
+  },
+  {
+    href: "#projects",
+    label: "projects",
+    blurb: "Dashboards, apps and data work, start to finish.",
+    color: "text-gold",
+  },
+  {
+    href: "#skills",
+    label: "skills",
+    blurb: "SQL, Python, Power BI — and four languages.",
+    color: "text-rose",
+  },
+  {
+    href: "#education",
+    label: "education",
+    blurb: "An MSc from Nottingham and a published paper.",
+    color: "text-blue",
+  },
+  {
+    href: "/blog",
+    label: "blog",
+    blurb: "Notes on fashion, marketing and the numbers behind them.",
+    color: "text-gold",
+  },
+  {
+    href: "#contact",
+    label: "contact",
+    blurb: "The fastest way to reach me.",
+    color: "text-coral",
+  },
 ];
 
-interface FallingCode {
-  id: number;
-  text: string;
-  left: number;
-  delay: number;
-  duration: number;
-}
-
 export default function Hero() {
-  const [phase, setPhase] = useState<"code" | "error" | "hello" | "content">("code");
-  const [typedText, setTypedText] = useState("");
-  const [fallingCodes, setFallingCodes] = useState<FallingCode[]>([]);
-
-  const fullText = "A Software Engineer & ML Enthusiast";
-
-  // Generate falling code - more on the sides, less in center (umbrella effect)
-  const generateFallingCode = useCallback(() => {
-    const codes: FallingCode[] = [];
-    for (let i = 0; i < 40; i++) {
-      // Push code to edges - avoid center 30-70% range more often
-      let leftPos = Math.random() * 100;
-      if (Math.random() > 0.3) {
-        // 70% chance to be on the sides
-        leftPos = Math.random() > 0.5
-          ? Math.random() * 25  // Left side 0-25%
-          : 75 + Math.random() * 25; // Right side 75-100%
-      }
-
-      codes.push({
-        id: i,
-        text: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
-        left: leftPos,
-        delay: Math.random() * 6,
-        duration: 4 + Math.random() * 5,
-      });
-    }
-    setFallingCodes(codes);
-  }, []);
-
-  useEffect(() => {
-    generateFallingCode();
-
-    // Phase transitions
-    const errorTimer = setTimeout(() => setPhase("error"), 4000);
-    const helloTimer = setTimeout(() => setPhase("hello"), 6000);
-    const contentTimer = setTimeout(() => setPhase("content"), 8000);
-
-    return () => {
-      clearTimeout(errorTimer);
-      clearTimeout(helloTimer);
-      clearTimeout(contentTimer);
-    };
-  }, [generateFallingCode]);
-
-  // Typing effect for subtitle
-  useEffect(() => {
-    if (phase === "content") {
-      let index = 0;
-      const typingInterval = setInterval(() => {
-        if (index <= fullText.length) {
-          setTypedText(fullText.slice(0, index));
-          index++;
-        } else {
-          clearInterval(typingInterval);
-        }
-      }, 50);
-      return () => clearInterval(typingInterval);
-    }
-  }, [phase]);
-
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-16 relative overflow-hidden bg-cream">
+    <section className="relative isolate overflow-hidden bg-ink pt-28 pb-20 sm:pt-32">
+      <div className="bokeh pointer-events-none absolute inset-0 -z-10" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_45%,transparent_0%,rgba(10,10,11,0.55)_45%,rgba(10,10,11,0.94)_80%)]" />
 
-      {/* Falling Code - Always visible, falls around content */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {fallingCodes.map((code) => (
-          <div
-            key={code.id}
-            className={`absolute font-mono text-sm whitespace-nowrap animate-fall text-transparent ${
-              phase === "content" ? "opacity-30" : ""
-            }`}
-            style={{
-              left: `${code.left}%`,
-              animationDelay: `${code.delay}s`,
-              animationDuration: `${code.duration}s`,
-            }}
-          >
-            {code.text}
-          </div>
-        ))}
-      </div>
-
-      {/* Phase 2: 404 Error */}
-      {phase === "error" && (
-        <div className="text-center z-10 animate-glitch">
-          <h1 className="font-mono text-8xl md:text-9xl font-bold text-text-dark mb-4">
-            404
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        {/* Wordmark */}
+        <header className="animate-fade-in text-center">
+          <h1 className="font-[family-name:var(--font-jost)] text-[clamp(2.75rem,12vw,9.5rem)] font-extralight lowercase leading-[0.85] tracking-[-0.01em] text-cream">
+            niharika patil
           </h1>
-          <p className="font-mono text-xl text-text-dark">
-            developer_not_found...
+          <p className="mt-5 font-[family-name:var(--font-jost)] text-[0.7rem] uppercase tracking-[0.42em] text-cream-dim sm:text-sm">
+            Marketing &amp; Customer Insight Analyst
           </p>
-          <p className="font-mono text-sm text-text-light mt-2 animate-pulse">
-            just kidding, loading...
-          </p>
-        </div>
-      )}
+        </header>
 
-      {/* Phase 3: Hello World */}
-      {phase === "hello" && (
-        <div className="text-center z-10">
-          <div className="font-mono text-4xl md:text-6xl text-text-dark animate-pulse">
-            <span className="text-pink-medium">{">"}</span> Hello, World!
-            <span className="animate-blink">_</span>
-          </div>
-        </div>
-      )}
+        <div className="mt-14 grid gap-12 lg:mx-auto lg:max-w-5xl lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:items-start lg:gap-16">
+          {/* Sidebar index */}
+          <nav className="animate-fade-in-up animate-delay-200 order-2 space-y-6 lg:order-1">
+            {sidebarLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="group block">
+                <h2
+                  className={`font-[family-name:var(--font-jost)] text-2xl font-light lowercase tracking-wide transition-colors ${link.color} group-hover:text-cream`}
+                >
+                  {link.label}
+                </h2>
+                <p className="mt-1 max-w-[16rem] text-[0.8rem] leading-snug text-cream-dim">
+                  {link.blurb}
+                </p>
+              </Link>
+            ))}
+          </nav>
 
-      {/* Phase 4: Actual Content */}
-      {phase === "content" && (
-        <>
-
-          <div className="text-center max-w-3xl animate-fade-in relative z-20 bg-cream/80 backdrop-blur-sm rounded-3xl p-10 shadow-[0_0_80px_40px_rgba(250,244,230,0.9)]">
-            <p className="text-2xl tracking-[0.3em] font-bold uppercase text-text-dark mb-4">
-              Hello, I&apos;m
+          {/* The post card */}
+          <article className="animate-fade-in-up animate-delay-400 order-1 mx-auto w-full max-w-lg rounded-2xl bg-card p-5 text-card-ink shadow-[0_24px_70px_rgba(0,0,0,0.6)] sm:p-7 lg:order-2">
+            <p className="font-[family-name:var(--font-cormorant)] text-xl font-semibold sm:text-2xl">
+              Currently: open to marketing analyst roles in fashion &amp; retail, UK
             </p>
 
-            <h1 className="font-[family-name:var(--font-cormorant)] text-5xl sm:text-6xl md:text-7xl font-semibold text-text-dark mb-4">
-              Niharika Patil
-            </h1>
+            <div className="relative mt-5 aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#efe7ea]">
+              <Image
+                src="/profile.png"
+                alt="Niharika Patil"
+                fill
+                priority
+                quality={100}
+                sizes="(max-width: 1024px) 90vw, 512px"
+                className="object-cover object-top"
+              />
+            </div>
 
-            <p className="text-xl md:text-2xl text-text-light font-normal mb-6 font-mono">
-              {typedText}
-              <span className="animate-blink">|</span>
+            <p className="mt-5 text-[0.92rem] leading-relaxed text-card-dim">
+              I turn data into decisions people actually act on — SQL, Python and
+              Power BI, with dashboards built for people who don&apos;t read code.
+              Two degrees in machine learning, a marketing lead role, retail
+              experience at John Lewis, and a soft spot for fashion.
             </p>
 
-            {/* <p className="text-md text-text-light max-w-xl mx-auto mb-10 leading-relaxed opacity-0 animate-fade-in-up animate-delay-400">
-              Master&apos;s student in Machine Learning with expertise in building scalable frontend
-              applications and production-grade ML systems. Passionate about creating elegant
-              solutions that bridge technology and user experience.
-            </p> */}
-
-            <div className="flex gap-4 justify-center flex-wrap opacity-0 animate-fade-in-up animate-delay-600">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="#projects"
-                className="px-8 py-4 rounded-full border-2 border-pink-medium text-text-dark font-medium tracking-wide hover:bg-pink-light hover:-translate-y-1 transition-all duration-300"
+                className="rounded-full bg-card-ink px-6 py-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-card transition-colors hover:bg-coral"
               >
                 View My Work
               </Link>
               <Link
                 href="#contact"
-                className="px-8 py-4 rounded-full border-2 border-pink-medium text-text-dark font-medium tracking-wide hover:bg-pink-light hover:-translate-y-1 transition-all duration-300"
+                className="rounded-full border border-card-ink/25 px-6 py-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-card-ink transition-colors hover:border-card-ink hover:bg-card-ink hover:text-card"
               >
                 Get In Touch
               </Link>
             </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-soft">
-            <svg
-              className="w-8 h-8 text-pink-accent"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </>
-      )}
+          </article>
+        </div>
+      </div>
     </section>
   );
 }
