@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost, Montserrat } from "next/font/google";
 import "./globals.css";
+import Analytics from "@/components/Analytics";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={`${cormorant.variable} ${montserrat.variable} ${jost.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
