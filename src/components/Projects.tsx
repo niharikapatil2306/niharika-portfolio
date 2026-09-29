@@ -6,6 +6,15 @@ import SectionHeading from "./SectionHeading";
 
 const projects = [
   {
+    title: "Loose Thread",
+    date: "Sep 2026 – Present",
+    description:
+      "A daily fashion and beauty gossip column, from Seoul to Paris. Curates global press into a daily blast, a trends decoder, an It List and an events diary, with a free newsletter and a £3/month membership.",
+    tags: ["Next.js", "Memberships", "Newsletter"],
+    image: "/loosethread.png",
+    live: "https://loosethreadb.netlify.app/",
+  },
+  {
     title: "InvestX",
     date: "Nov 2025 - Jan 2026",
     description:
